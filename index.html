@@ -1,92 +1,264 @@
 <html>
   <head>
     <title>Charles DuBose</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet"></link>
+    <style>
+      #main-head {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 80px;
+        background: white;
+        box-shadow: 2px 3px 4px 1px rgba(0,0,0,.2);
+        z-index: 3;
+      }
+      
+      #main-head h1{
+        margin: 0px 50px;
+        line-height: 80px;
+        display: inline-block;
+      }
+      
+      body > section {
+        position: absolute;
+        top: 0;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        overflow: hidden;
+        background: #334240;
+        transition: bottom 0s ease 1s;
+      }
+      
+      section.active{
+        bottom: 0%;
+        z-index: 2; 
+        transition: bottom 1s ease;
+      }
+      
+      .section-head{
+        position: absolute;
+        top: 100px;
+        left: 200px;
+        min-width: 300px;
+      }
+      
+      .detail-body{
+        position: absolute;
+        top: 200px;
+        left: 200px;
+        right: 50px;
+        bottom: 50px;
+        padding: 0px;
+      }
+      
+      .main-nav{
+        position: absolute;
+        top: 100px;
+        left: 50px;
+        z-index: 3;
+      }
+      
+      .stand-out{
+        background: white;
+        box-shadow: 2px 3px 4px 1px rgba(0,0,0,.2);
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px 15px;
+      }
+ 
+    </style>
+    <script>
+      $(function(){
+        var resume = function(){
+          $(document).on('click', '.main-nav a', this.showSection)
+        }
+        
+        resume.prototype.showSection = function(){
+          $('section.active').removeClass('active');
+          $($(this).data('target')).addClass('active');
+        }
+        
+        window.Resume = new resume();
+      });
+    </script>
   </head>
   <body>
-    <section>
-      <h3>Skills</h3>
-      <article>
-        <h4>Languages</h4>
-        <ul>
-          <li>Ruby</li>
-          <li>C#</li>
-          <li>Javascript <div>A focus on Object-oriented javascript</div></li>
-          <li>SQL <div>Postgresql, MSSQL, MySQL</div></li>
-          <li>NoSQL <div>MongoDB</div></li>
-          <li>Additional experience with: 
+    <header id="main-head">
+      <h1>Charles DuBose</h1>
+    </header>
+    <section id="skills" class="active">
+      <div class="section-head stand-out">
+        <h3>Skills</h3>
+      </div>
+      <div class="container-fluid detail-body">
+        <div class="row-fluid">
+          <article class="span3 stand-out">
+            <h4>Languages</h4>
             <ul>
-              <li>HTML5/CSS3</li>
-              <li>Java</li>
-              <li>C++</li>
+              <li>Ruby</li>
+              <li>C#</li>
+              <li>Javascript <div>A focus on Object-oriented javascript</div></li>
+              <li>SQL <div>Postgresql, MSSQL, MySQL</div></li>
+              <li>NoSQL <div>MongoDB</div></li>
+              <li>Additional experience with: 
+                <ul>
+                  <li>HTML5/CSS3</li>
+                  <li>Java</li>
+                  <li>C++</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </article>
-      <article>
-        <h4>Frameworks</h4>
-        <ul>
-          <li>Ruby on Rails</li>
-          <li>NodeJs</li>
-          <li>ExtJs</li>
-          <li>jQuery</li>
-          <li>ASP.NET <div>Experience with ASP.NET 2.0 and .NET MVC</div></li>
-        </ul>
-      </article>
-      <article>
-        <h4>Server Configuration</h4>
-        <ul>
-          <li>nginx</li>
-          <li>NodeJs <div>Running via nginx and deployed to Heroku</div></li>
-          <li>Unicorn</li>
-        </ul>
-      </article>
-      <article>
-        <h4>Operating Systems</h4>
-        <ul>
-          <li>Linux - Ubuntu</li>
-          <li>Windows XP, 7, 2008</li>
-        </ul>
-      </article>
-      <article>
-        <h4>Other</h4>
-        <ul>
-          <li>Hardware</li>
-        </ul>
-      </article>
+          </article>
+          <article class="span3 stand-out">
+            <h4>Frameworks</h4>
+            <ul>
+              <li>Ruby on Rails</li>
+              <li>NodeJs</li>
+              <li>ExtJs</li>
+              <li>jQuery</li>
+              <li>ASP.NET <div>Experience with ASP.NET 2.0 and .NET MVC</div></li>
+            </ul>
+          </article>
+          <article class="span3 stand-out">
+            <h4>Server</h4>
+            <ul>
+              <li>nginx</li>
+              <li>Unicorn</li>
+              <li>Thin</li>
+              <li>NodeJs on Heroku</li>
+            </ul>
+          </article>
+          <article class="span3 stand-out">
+            <h4>Operating Systems</h4>
+            <ul>
+              <li>Linux - Ubuntu</li>
+              <li>Windows XP, 7, 2008</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h3>Education</h3>
-      <article>
-        <h4>Harlingen South High School</h4>
-        <ul>
-          <li>Graduated first in class of 360</li>
-          <li>Member National Honor Society</li>
-          <li>Co-president math and science team</li>
-          <li>Founder of computer science team</li>
-        </ul>
-      </article>
-      <article>
-        <h4>Texas Tech University</h4>
-        <ul>
-          <li>Computer Science, Honors</li>
-          <li>Minor in Math</li>
-          <li>GPA - 3.64</li>
-          <li>Graduated December 2006</li>
-        </ul>
-      </article>
+    <section id="education">
+      <div class="section-head stand-out">
+        <h3>Education</h3>
+      </div>
+      <div class="container-fluid detail-body">
+        <div class="row-fluid">
+          <article class="span6 stand-out">
+            <h4>Texas Tech University</h4>
+            <ul>
+              <li>Computer Science, Honors</li>
+              <li>Minor in Math</li>
+              <li>GPA - 3.64</li>
+              <li>Graduated December 2006</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h3>Experience</h3>
+    <section id="experience">
+      <div class="section-head stand-out">
+        <h3>Experience</h3>
+      </div>
+      <div class="container-fluid detail-body">
+        <div class="row-fluid"> 
+          <article class="span4 stand-out">  
+            <h4>High Tech Computer Store</h4>
+            <p>Lubbock, Texas - April 2004 to April 2006</p>
+            <ul>
+              <li>Senior Computer Technician</li>
+              <li>Repair computers and program C++ and C# code for shop disks</li>
+            </ul>
+          </article>
+          <article class="span4 stand-out"> 
+            <h4>e-MDs</h4>
+            <p>Austin, Texas - April 2007 to July 2010</p>  
+            <em>Programmer</em>
+            <ul>
+              <li>Developed EMR (Electronic Medical Record) software using C# and WPF</li>
+              <li>Participated in the design and development of the next generation web-based EMR using AJAX calling .Net webservices connected to a stored procedure driven MSSQL 2008 database</li>
+              <li>Gained experience in: Javascript with Prototype AJAX and Scriptaculous, .NET MVC, ExtJs, SQL with xquery, and C#</li>
+            </ul>        
+          </article>
+          <article class="span4 stand-out">  
+            <h4>Texas Association of Local Health Professionals</h4>
+            <p>Austin, Texas - July 2010 to present</p>
+            <em>Senior Architect</em>
+            <ul>
+              <li>Led an agile team in developing a variety of public health related projects</li>
+              <li>Converted and modernized an existing Rails project from 2.1 to 3.2 while developing an api-based front end</li>
+              <li>Designed and implemented projects relating to volunteer management, school health surveillance, syndromic surveillance</li>
+              <li>Served as primary architect for rapid prototypes for disaster preparedness, exception-based time tracking, and epidemiological tools</li>
+            </ul>    
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h3>Projects</h3>
-      <article>
-        <h4>Github Repository</h4>
-        <a href="http://github.com/kayakyakr" target="_blank">kayakyakr</a>
-      </article>
+    <section id="projects">
+      <div class="section-head stand-out">
+        <h3>Projects</h3>        
+      </div>
+      <div class="container-fluid detail-body">
+        <div class="row-fluid">
+          <article class="span5 stand-out">
+            <h4>Github Repository</h4>
+            <p>My personal github repository contains a random sampling of different projects started for different reasons</p>
+            <a href="https://github.com/kayakyakr" target="_blank">kayakyakr on Github</a>
+            <p>More interesting might be the repository for TALHO, which publishes a number of open source projects on. I
+               have contributed to most of the more recent projects in that repository</p>
+            <a href="https://github.com/talho" target="_blank">TALHO on Github</a>
+          </article>
+          <article class="span7 stand-out">
+            <h4>SumTimes</h4>
+            <p>Unfortunately many of the projects I've worked on in the last two years have been closed source, so it may
+               be difficult to get an idea of my current style.</p>
+            <p>Perhaps the best would be <a href="https://github.com/talho/sum_times" target="_blank">SumTimes</a>, an exclusion-based time tracking system
+               that was developed as a rapid prototype for internal use over the course of 3 weeks. It is a bit rough around the edges and lacks the testing
+               that a production-ready system would have, but it is a good example of a project design to implementation in 3 weeks time</p>
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h3>Bio</h3>
+    <section id="bio">
+      <div class="section-head stand-out">
+        <h3>Bio</h3>
+      </div>
+      <div class="container-fluid detail-body">
+        <div class="row-fluid">
+          <article class="span4 stand-out">
+            <h4>Interests</h4>
+            <p>I pride myself on finding balance in life and my interests reflect that.</p>
+            <h6>Outdoors</h6>
+            <ul>
+              <li>Kayaking</li>
+              <li>Fishing</li>
+              <li>Random Construction</li>
+            </ul>
+            <h6>Indoors</h6>
+            <ul>
+              <li>Board games</li>
+              <li>Video games</li>
+            </ul>
+            <h6>Spectation</h6>
+            <ul>
+              <li>College sports, especially football</li>
+              <li>Live Music</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </section>
+    <ul class="nav nav-list main-nav stand-out">
+      <li><a href="#" data-target="#skills">Skills</a></li>
+      <li><a href="#" data-target="#experience">Experience</a></li>
+      <li><a href="#" data-target="#education">Education</a></li>
+      <li><a href="#" data-target="#projects">Projects</a></li>
+      <li><a href="#" data-target="#bio">About Me</a></li>
+    </nav>
   </body>
 </html>
